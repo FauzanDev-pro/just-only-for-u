@@ -178,42 +178,56 @@
         
         <div id="proposal-screen" class="proposal">
             <h2>Zivia, would you do me the honor of being my girlfriend?</h2>
-            <button id="yes-btn" class="btn">Yes</button>
-            <button id="no-btn" class="btn" style="background-color: #6c757d;">No</button>
+            <button id="yes-btn" class="btn" onclick="handleYesClick()">Yes</button>
+            <button id="no-btn" class="btn" style="background-color: #6c757d;" onclick="handleNoClick()">No</button>
         </div>
         
         <div id="confirmation-1" class="proposal hidden">
             <h2>Are you sure?</h2>
-            <button class="btn confirm-yes">Yes</button>
+            <button class="btn" onclick="handleConfirmYes(0)">Yes</button>
         </div>
         
         <div id="confirmation-2" class="proposal hidden">
             <h2>Are you really sure?</h2>
-            <button class="btn confirm-yes">Yes</button>
+            <button class="btn" onclick="handleConfirmYes(1)">Yes</button>
         </div>
         
         <div id="confirmation-3" class="proposal hidden">
             <h2>Do you promise?</h2>
-            <button class="btn confirm-yes">Yes</button>
+            <button class="btn" onclick="handleConfirmYes(2)">Yes</button>
         </div>
         
         <div id="confirmation-4" class="proposal hidden">
             <h2>Like, really really sure?</h2>
-            <button class="btn confirm-yes">Yes</button>
+            <button class="btn" onclick="handleConfirmYes(3)">Yes</button>
         </div>
         
         <div id="confirmation-5" class="proposal hidden">
             <h2>One last time... is that your final answer?</h2>
-            <button class="btn confirm-yes">Yes</button>
+            <button class="btn" onclick="handleConfirmYes(4)">Yes</button>
         </div>
         
         <div id="final-screen" class="proposal hidden">
-            <p class="final-message">Omg I can't believe this, you really are my girlfriend? 😱 Oh no... I want to faint now, everything I think is impossible and only my dreams, suddenly come true. 😭</p>
-            <button id="whatsapp-btn" class="btn">Kirimkan sebuah pesan</button>
+            <p class="final-message">Omg I can't believe this, you really are my girlfriend? 😱 Nah nah, hell nah... I want to faint now, everything I think is impossible and only my dreams, suddenly come true. 😭</p>
+            <button id="whatsapp-btn" class="btn" onclick="sendWhatsAppMessage()">Send a message to me</button>
         </div>
     </div>
 
     <script>
+        // Global variables
+        let confirmationCount = 0;
+        const mainTitle = document.getElementById('main-title');
+        const storySection = document.getElementById('story-section');
+        const proposalScreen = document.getElementById('proposal-screen');
+        const finalScreen = document.getElementById('final-screen');
+        const confirmationScreens = [
+            document.getElementById('confirmation-1'),
+            document.getElementById('confirmation-2'),
+            document.getElementById('confirmation-3'),
+            document.getElementById('confirmation-4'),
+            document.getElementById('confirmation-5')
+        ];
+        
         // Create floating hearts
         function createHearts() {
             const container = document.getElementById('hearts-container');
@@ -230,24 +244,8 @@
             }
         }
         
-        // Run immediately when the page loads
-        createHearts();
-        
-        // Set up all the event listeners
-        let confirmationCount = 0;
-        const mainTitle = document.getElementById('main-title');
-        const storySection = document.getElementById('story-section');
-        const proposalScreen = document.getElementById('proposal-screen');
-        const finalScreen = document.getElementById('final-screen');
-        const confirmationScreens = [
-            document.getElementById('confirmation-1'),
-            document.getElementById('confirmation-2'),
-            document.getElementById('confirmation-3'),
-            document.getElementById('confirmation-4'),
-            document.getElementById('confirmation-5')
-        ];
-        
-        document.getElementById('yes-btn').addEventListener('click', function() {
+        // Handle Yes button click
+        function handleYesClick() {
             // Hide the title and story
             mainTitle.style.opacity = '0';
             setTimeout(() => {
@@ -259,53 +257,63 @@
             proposalScreen.classList.add('hidden');
             confirmationScreens[0].classList.remove('hidden');
             confirmationScreens[0].classList.add('fade-in');
-        });
+        }
         
-        document.getElementById('no-btn').addEventListener('click', function() {
-            this.classList.add('bounce');
-            this.disabled = true;
-            this.textContent = "Try again 😉";
+        // Handle No button click
+        function handleNoClick() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.classList.add('bounce');
+            noBtn.disabled = true;
+            noBtn.textContent = "Try again 😉";
             setTimeout(() => {
-                this.disabled = false;
-                this.textContent = "No";
-                this.classList.remove('bounce');
+                noBtn.disabled = false;
+                noBtn.textContent = "No";
+                noBtn.classList.remove('bounce');
             }, 1000);
-        });
+        }
         
-        document.querySelectorAll('.confirm-yes').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                confirmationScreens[confirmationCount].classList.add('hidden');
-                confirmationCount++;
+        // Handle confirmation Yes clicks
+        function handleConfirmYes(index) {
+            confirmationScreens[index].classList.add('hidden');
+            confirmationCount = index + 1;
+            
+            if (confirmationCount < 5) {
+                confirmationScreens[confirmationCount].classList.remove('hidden');
+                confirmationScreens[confirmationCount].classList.add('fade-in');
+            } else {
+                finalScreen.classList.remove('hidden');
+                finalScreen.classList.add('fade-in');
                 
-                if (confirmationCount < 5) {
-                    confirmationScreens[confirmationCount].classList.remove('hidden');
-                    confirmationScreens[confirmationCount].classList.add('fade-in');
-                } else {
-                    finalScreen.classList.remove('hidden');
-                    finalScreen.classList.add('fade-in');
-                    
-                    // Create more hearts for celebration, but slower
-                    for (let i = 0; i < 15; i++) {
-                        setTimeout(() => {
-                            const newHeart = document.createElement('div');
-                            const heartSymbols = ['❤', '💕', '💓', '💗', '💖'];
-                            
-                            newHeart.classList.add('heart-particle');
-                            newHeart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                            newHeart.style.left = Math.random() * 100 + 'vw';
-                            newHeart.style.animationDuration = 15 + Math.random() * 15 + 's';
-                            
-                            document.getElementById('hearts-container').appendChild(newHeart);
-                        }, i * 500); // Spacing out heart creation more
-                    }
+                // Create more hearts for celebration, but slower
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const newHeart = document.createElement('div');
+                        const heartSymbols = ['❤', '💕', '💓', '💗', '💖'];
+                        
+                        newHeart.classList.add('heart-particle');
+                        newHeart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                        newHeart.style.left = Math.random() * 100 + 'vw';
+                        newHeart.style.animationDuration = 15 + Math.random() * 15 + 's';
+                        
+                        document.getElementById('hearts-container').appendChild(newHeart);
+                    }, i * 500); // Spacing out heart creation more
                 }
-            });
-        });
+            }
+        }
         
-        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+        // Handle WhatsApp button click
+        function sendWhatsAppMessage() {
             const message = encodeURIComponent("Yes, I want to be your girlfriend!");
             window.location.href = https://wa.me/6285640429082?text=${message};
+        }
+        
+        // Initial hearts creation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
         });
+        
+        // Create hearts immediately as well (for browsers that might delay DOMContentLoaded)
+        createHearts();
     </script>
 </body>
 </html>

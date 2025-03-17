@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Zivia</title>
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff5f5;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #d23669;
+            margin-bottom: 20px;
+        }
+        .story {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .proposal {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #d23669;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #b8305d;
+            transform: scale(1.05);
+        }
+        .heart {
+            color: #d23669;
+            font-size: 24px;
+        }
+        .hidden {
+            display: none;
+        }
+        .final-message {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            color: rgba(210, 54, 105, 0.3);
+            font-size: 20px;
+            animation: float 5s ease-in infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <div class="container">
+        <h1>Dear Zivia <span class="heart">❤</span></h1>
+        
+        <div class="story">
+            <h2>Our Story</h2>
+            <p>Uhh jadi gini, aku dri kelas 7 memang awal msuk udh tertarik dengan kmu</p>
+            <p>And aku udh putuskan confesssnya di kelas 8 aja, karena i tkut u malah bingung kan tiba2 kalo aku jujur ke kmu</p>
+            <p>And yeah.. that incident happened instead. kmu keluar dri sekolah tiba2 tanpa alasan yg jelas.</p>
+            <p>Dan disitu aku panik dan sedih. ntah mengapa, padahal aku ga ada hubungan apapun sm u kan.. tpi anehnya wktu itu aku bener2 panik.</p>
+            <p>Aku cari tau alasan knp kmu keluar, aku tanya ke tmn2 yg lain tpi jawabannya pd beda2 dan ak bingung sendiri.. sampe pada masanya, u chat aku di whatsapp. dan tiba2 setelah itu menghilang.</p>
+            <p>Di situ aku pengen langsung jujur, tapi karena keadaannya ga memungkinkan jdi aku ragu. lama2 aku ga sadar nomor wa mu yg lama dh ga aktif dan disitu aku dh pasrah karena memang akan lost contact ujung2nya.</p>
+            <p>Tapi setelah sekian lama, aku iseng cari telegram dengan namamu dan ternyata WOW aku aga sedikit terkejut ternyata masih aktif, i bener2 shock dan kaget wktu itu.</p>
+            <p>Dri aku kelas 7 jujur aj, sampe pertengahan kelas 7 dan mau otw kelas 8, i masih mikirin sol u sampe akhirnya nemu telegram mu dan aku lega. ga jadi lost contact.</p>
+            <p>Dan aku jg disitu masih blm berani jujur, tpi skrg u malah tiba2 confess dan jujur duluan, aku g nyangka tiba2 aja loh, hampir kena serangan jantung wkwk</p>
+            <p>Menurut ku, you are so beautiful, in my type, and your nature is also funny.</p>
+            <p>Jujur aku masih ragu, tangan ku juga gemetaran dikit, aku ga bisa nyangka. ini mimpi atau nyata..</p>
+            <p>But.. ok i will to the point right now. btw cumaa kmu org pertama. dari yg pertama yg membuat ku tertarik. I really like you.</p>
+            <p>Kamu bisa pilih yes / no, kalo no juga gapapa sih. Aku cuma mau lepasin semua hal yg membuat ku dri dulu kepikiran dan ingin mengatakan ini dari dulu.</p>
+        </div>
+        
+        <div id="proposal-screen" class="proposal">
+            <h2>Zivia, would you do me the honor of being my girlfriend?</h2>
+            <button id="yes-btn" class="btn">Yes</button>
+            <button id="no-btn" class="btn" style="background-color: #6c757d;">No</button>
+        </div>
+        
+        <div id="confirmation-1" class="proposal hidden">
+            <h2>Are you sure?</h2>
+            <button class="btn confirm-yes">Yes</button>
+        </div>
+        
+        <div id="confirmation-2" class="proposal hidden">
+            <h2>Are you really sure?</h2>
+            <button class="btn confirm-yes">Yes</button>
+        </div>
+        
+        <div id="confirmation-3" class="proposal hidden">
+            <h2>Do you promise?</h2>
+            <button class="btn confirm-yes">Yes</button>
+        </div>
+        
+        <div id="confirmation-4" class="proposal hidden">
+            <h2>Like, really really sure?</h2>
+            <button class="btn confirm-yes">Yes</button>
+        </div>
+        
+        <div id="confirmation-5" class="proposal hidden">
+            <h2>One last time... is that your final answer?</h2>
+            <button class="btn confirm-yes">Yes</button>
+        </div>
+        
+        <div id="final-screen" class="proposal hidden">
+            <p class="final-message">Omg I can't believe this, you really are my girlfriend? Oh no... I want to faint now, everything I think is impossible and only my dreams, suddenly come true.</p>
+            <button id="whatsapp-btn" class="btn">Send me a message ❤</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartSymbols = ['❤', '💕', '💓', '💗', '💖'];
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = 5 + Math.random() * 10 + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            
+            let confirmationCount = 0;
+            const proposalScreen = document.getElementById('proposal-screen');
+            const finalScreen = document.getElementById('final-screen');
+            const confirmationScreens = [
+                document.getElementById('confirmation-1'),
+                document.getElementById('confirmation-2'),
+                document.getElementById('confirmation-3'),
+                document.getElementById('confirmation-4'),
+                document.getElementById('confirmation-5')
+            ];
+            
+            document.getElementById('yes-btn').addEventListener('click', function() {
+                proposalScreen.classList.add('hidden');
+                confirmationScreens[0].classList.remove('hidden');
+                confirmationScreens[0].classList.add('fade-in');
+            });
+            
+            document.getElementById('no-btn').addEventListener('click', function() {
+                this.disabled = true;
+                this.textContent = "Try again 😉";
+                setTimeout(() => {
+                    this.disabled = false;
+                    this.textContent = "No";
+                }, 1000);
+            });
+            
+            document.querySelectorAll('.confirm-yes').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    confirmationScreens[confirmationCount].classList.add('hidden');
+                    confirmationCount++;
+                    
+                    if (confirmationCount < 5) {
+                        confirmationScreens[confirmationCount].classList.remove('hidden');
+                        confirmationScreens[confirmationCount].classList.add('fade-in');
+                    } else {
+                        finalScreen.classList.remove('hidden');
+                        finalScreen.classList.add('fade-in');
+                        
+                        // Create more hearts for celebration
+                        for (let i = 0; i < 50; i++) {
+                            setTimeout(createHearts, i * 100);
+                        }
+                    }
+                });
+            });
+            
+            document.getElementById('whatsapp-btn').addEventListener('click', function() {
+                const message = encodeURIComponent("Yes, I want to be your girlfriend! ❤");
+                window.location.href = https://wa.me/6285640429082?text=${message};
+            });
+        });
+    </script>
+</body>
+</html>

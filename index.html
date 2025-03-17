@@ -6,7 +6,7 @@
     <title>For Zivia</title>
     <style>
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 0;
             background-color: #fff5f5;
@@ -22,6 +22,15 @@
         h1, h2 {
             color: #d23669;
             margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.2rem;
+        }
+        p {
+            font-size: 0.95rem;
+            font-weight: 400;
         }
         .story {
             background-color: #fff;
@@ -30,6 +39,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
             text-align: left;
+            animation: slideIn 1s ease-out;
         }
         .proposal {
             background-color: #fff;
@@ -37,6 +47,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            animation: pulse 2s infinite;
         }
         .btn {
             background-color: #d23669;
@@ -46,8 +57,9 @@
             margin: 10px;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
         }
         .btn:hover {
             background-color: #b8305d;
@@ -56,12 +68,13 @@
         .heart {
             color: #d23669;
             font-size: 24px;
+            animation: beat 1s infinite alternate;
         }
         .hidden {
             display: none;
         }
         .final-message {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 30px;
         }
         .floating-hearts {
@@ -78,21 +91,24 @@
             pointer-events: none;
             color: rgba(210, 54, 105, 0.3);
             font-size: 20px;
-            animation: float 5s ease-in infinite;
+            animation: float 12s ease-in infinite;
         }
         @keyframes float {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
-            10% {
-                opacity: 1;
+            20% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.7;
             }
             90% {
-                opacity: 1;
+                opacity: 0.2;
             }
             100% {
-                transform: translateY(-100vh) rotate(720deg);
+                transform: translateY(0) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -100,33 +116,63 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        @keyframes slideIn {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 5px 15px rgba(210, 54, 105, 0.2); }
+            50% { box-shadow: 0 5px 30px rgba(210, 54, 105, 0.4); }
+            100% { box-shadow: 0 5px 15px rgba(210, 54, 105, 0.2); }
+        }
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
         .fade-in {
             opacity: 0;
             animation: fadeIn 1s forwards;
         }
+        .bounce {
+            animation: bounce 1s;
+        }
+        .main-title {
+            transition: opacity 0.5s ease;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="floating-hearts" id="hearts-container"></div>
     
     <div class="container">
-        <h1>This is my confess <span class="heart">❤</span></h1>
+        <h1 id="main-title" class="main-title">This is my confess <span class="heart">❤</span></h1>
         
-        <div class="story">
+        <div id="story-section" class="story">
             <h2>Short Story</h2>
-            <p>Uhh jadi gini, aku dri kelas 7 memang awal msuk udh tertarik dengan kmu</p>
-            <p>And aku udh putuskan confesssnya di kelas 8 aja, karena i tkut u malah bingung kan tiba2 kalo aku jujur ke kmu</p>
-            <p>And yeah.. that incident happened instead. kmu keluar dri sekolah tiba2 tanpa alasan yg jelas.</p>
+            <p>Uhh jadi gini, aku dri kelas 7 memang awal msuk udh tertarik dengan kmu.</p>
+            <p>And aku udh putuskan confesssnya di kelas 8 aja, karena i tkut u malah bingung kan tiba2 kalo aku jujur ke kmu.</p>
+            <p>And yeah.. that incident happened instead. kmu keluar dri sekolah tiba2 tanpa alasan yg jelas 😔</p>
             <p>Dan disitu aku panik dan sedih. ntah mengapa, padahal aku ga ada hubungan apapun sm u kan.. tpi anehnya wktu itu aku bener2 panik.</p>
             <p>Aku cari tau alasan knp kmu keluar, aku tanya ke tmn2 yg lain tpi jawabannya pd beda2 dan ak bingung sendiri.. sampe pada masanya, u chat aku di whatsapp. dan tiba2 setelah itu menghilang.</p>
             <p>Di situ aku pengen langsung jujur, tapi karena keadaannya ga memungkinkan jdi aku ragu. lama2 aku ga sadar nomor wa mu yg lama dh ga aktif dan disitu aku dh pasrah karena memang akan lost contact ujung2nya.</p>
             <p>Tapi setelah sekian lama, aku iseng cari telegram dengan namamu dan ternyata WOW aku aga sedikit terkejut ternyata masih aktif, i bener2 shock dan kaget wktu itu.</p>
             <p>Dri aku kelas 7 jujur aj, sampe pertengahan kelas 7 dan mau otw kelas 8, i masih mikirin sol u sampe akhirnya nemu telegram mu dan aku lega. ga jadi lost contact.</p>
-            <p>Dan aku jg disitu masih blm berani jujur, tpi skrg u malah tiba2 confess dan jujur duluan, aku g nyangka tiba2 aja loh, hampir kena serangan jantung wkwk</p>
-            <p>Menurut ku, you are so beautiful, in my type, and your nature is also funny.</p>
-            <p>Jujur aku masih ragu, tangan ku juga gemetaran dikit, aku ga bisa nyangka. ini mimpi atau nyata..</p>
-            <p>But.. ok i will to the point right now. btw cumaa kmu org pertama. dari yg pertama yg membuat ku tertarik. I really like you.</p>
+            <p>Dan aku jg disitu masih blm berani jujur, tpi skrg u malah tiba2 confess dan jujur duluan, aku g nyangka tiba2 aja loh, hampir kena serangan jantung wkwk 🤣</p>
+            <p>Menurut ku, you are so beautiful, in my type, and your nature is also funny. 😁</p>
+            <p>Jujur aku masih ragu, tangan ku juga gemetaran dikit, aku ga bisa nyangka. ini mimpi atau nyata.. 😭</p>
+            <p>But.. ok i will to the point right no. Btw cumaa kmu org pertama. dari yg pertama yg membuat ku tertarik. I really like you. 😶</p>
             <p>Kamu bisa pilih yes / no, kalo no juga gapapa sih. Aku cuma mau lepasin semua hal yg membuat ku dri dulu kepikiran dan ingin mengatakan ini dari dulu.</p>
         </div>
         
@@ -162,8 +208,8 @@
         </div>
         
         <div id="final-screen" class="proposal hidden">
-            <p class="final-message">Omg I can't believe this, you really are my girlfriend? Oh no... I want to faint now, everything I think is impossible and only my dreams, suddenly come true.</p>
-            <button id="whatsapp-btn" class="btn">Send me a message ❤</button>
+            <p class="final-message">Omg I can't believe this, you really are my girlfriend? 😱 Oh no... I want to faint now, everything I think is impossible and only my dreams, suddenly come true. 😭</p>
+            <button id="whatsapp-btn" class="btn">Kirimkan sebuah pesan</button>
         </div>
     </div>
 
@@ -173,70 +219,92 @@
             const container = document.getElementById('hearts-container');
             const heartSymbols = ['❤', '💕', '💓', '💗', '💖'];
             
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 10; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
                 heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
                 heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = 5 + Math.random() * 10 + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = 12 + Math.random() * 15 + 's';
+                heart.style.animationDelay = Math.random() * 8 + 's';
                 container.appendChild(heart);
             }
         }
         
-        document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
+        // Run immediately when the page loads
+        createHearts();
+        
+        // Set up all the event listeners
+        let confirmationCount = 0;
+        const mainTitle = document.getElementById('main-title');
+        const storySection = document.getElementById('story-section');
+        const proposalScreen = document.getElementById('proposal-screen');
+        const finalScreen = document.getElementById('final-screen');
+        const confirmationScreens = [
+            document.getElementById('confirmation-1'),
+            document.getElementById('confirmation-2'),
+            document.getElementById('confirmation-3'),
+            document.getElementById('confirmation-4'),
+            document.getElementById('confirmation-5')
+        ];
+        
+        document.getElementById('yes-btn').addEventListener('click', function() {
+            // Hide the title and story
+            mainTitle.style.opacity = '0';
+            setTimeout(() => {
+                mainTitle.classList.add('hidden');
+                storySection.classList.add('hidden');
+            }, 500);
             
-            let confirmationCount = 0;
-            const proposalScreen = document.getElementById('proposal-screen');
-            const finalScreen = document.getElementById('final-screen');
-            const confirmationScreens = [
-                document.getElementById('confirmation-1'),
-                document.getElementById('confirmation-2'),
-                document.getElementById('confirmation-3'),
-                document.getElementById('confirmation-4'),
-                document.getElementById('confirmation-5')
-            ];
-            
-            document.getElementById('yes-btn').addEventListener('click', function() {
-                proposalScreen.classList.add('hidden');
-                confirmationScreens[0].classList.remove('hidden');
-                confirmationScreens[0].classList.add('fade-in');
-            });
-            
-            document.getElementById('no-btn').addEventListener('click', function() {
-                this.disabled = true;
-                this.textContent = "Try again 😉";
-                setTimeout(() => {
-                    this.disabled = false;
-                    this.textContent = "No";
-                }, 1000);
-            });
-            
-            document.querySelectorAll('.confirm-yes').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    confirmationScreens[confirmationCount].classList.add('hidden');
-                    confirmationCount++;
+            // Hide proposal and show first confirmation
+            proposalScreen.classList.add('hidden');
+            confirmationScreens[0].classList.remove('hidden');
+            confirmationScreens[0].classList.add('fade-in');
+        });
+        
+        document.getElementById('no-btn').addEventListener('click', function() {
+            this.classList.add('bounce');
+            this.disabled = true;
+            this.textContent = "Try again 😉";
+            setTimeout(() => {
+                this.disabled = false;
+                this.textContent = "No";
+                this.classList.remove('bounce');
+            }, 1000);
+        });
+        
+        document.querySelectorAll('.confirm-yes').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                confirmationScreens[confirmationCount].classList.add('hidden');
+                confirmationCount++;
+                
+                if (confirmationCount < 5) {
+                    confirmationScreens[confirmationCount].classList.remove('hidden');
+                    confirmationScreens[confirmationCount].classList.add('fade-in');
+                } else {
+                    finalScreen.classList.remove('hidden');
+                    finalScreen.classList.add('fade-in');
                     
-                    if (confirmationCount < 5) {
-                        confirmationScreens[confirmationCount].classList.remove('hidden');
-                        confirmationScreens[confirmationCount].classList.add('fade-in');
-                    } else {
-                        finalScreen.classList.remove('hidden');
-                        finalScreen.classList.add('fade-in');
-                        
-                        // Create more hearts for celebration
-                        for (let i = 0; i < 50; i++) {
-                            setTimeout(createHearts, i * 100);
-                        }
+                    // Create more hearts for celebration, but slower
+                    for (let i = 0; i < 15; i++) {
+                        setTimeout(() => {
+                            const newHeart = document.createElement('div');
+                            const heartSymbols = ['❤', '💕', '💓', '💗', '💖'];
+                            
+                            newHeart.classList.add('heart-particle');
+                            newHeart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                            newHeart.style.left = Math.random() * 100 + 'vw';
+                            newHeart.style.animationDuration = 15 + Math.random() * 15 + 's';
+                            
+                            document.getElementById('hearts-container').appendChild(newHeart);
+                        }, i * 500); // Spacing out heart creation more
                     }
-                });
+                }
             });
-            
-            document.getElementById('whatsapp-btn').addEventListener('click', function() {
-                const message = encodeURIComponent("Yes, I want to be your girlfriend! ❤");
-                window.location.href = https://wa.me/6285640429082?text=${message};
-            });
+        });
+        
+        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+            const message = encodeURIComponent("Yes, I want to be your girlfriend!");
+            window.location.href = https://wa.me/6285640429082?text=${message};
         });
     </script>
 </body>
